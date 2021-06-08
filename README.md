@@ -3,7 +3,7 @@
 *A LimeSurvey data extractor*
 
 ## Installation
-
+I am not familiar with setting this repo as pypi , you still need to installed the original limesirvey-coconut then copy lime.py on the same directory (lib/site-packages/coconut)
 ```
 pip install limesurvey-coconut
 ```
