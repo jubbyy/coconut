@@ -14,11 +14,12 @@ pip install limesurvey-coconut
 ```python
 from coconut import LimeAPI, Survey, Workbook
 
-# Create a LimeAPI instance
+# Create a LimeAPI instance  and disable all log by setting "log" = False (default log=True for backward compatible)
 lime = LimeAPI(
         url="https://surveys.my-lime-survey-instance.org",
         username="admin",
-        password="password"
+        password="password",
+        log=False
     )
 
 # Create the survey instance
