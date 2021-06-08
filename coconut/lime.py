@@ -33,7 +33,7 @@ class LimeAPI:
     # There are still a few pain points in dealing with the JSON-RPC protocol
     _rpc_protocol_patched = False
 
-    def __init__(self, url, username, password, headers=None):
+    def __init__(self, url, username, password, headers=None,log=True):
         """
         LimeSurvey API Client for Remote API 2.
         Aims to simplify and automate the necessary task of moving data out of
@@ -46,11 +46,14 @@ class LimeAPI:
                         request should be fitted with an application/JSON content-type
                         declaration
         """
+        if log == False:
+            logger.disable("")
         logger.info("Instantiating LimeAPI client")
         self.url = url
         self.username = username
         self.password = password
         self.headers = self._default_headers if headers is None else headers
+        self.log = log
         self.session_key = None
         self.rpc_client = None
         self.rpc_proxy = None
@@ -243,7 +246,7 @@ class LimeAPI:
             if isinstance(data, bytes):
                 data = data.decode()
             try:
-                print(data)
+                logger.info(data)
                 rep = json.loads(data)
             except Exception as e:
                 traceback.print_exc()
@@ -322,5 +325,3 @@ class LimeAPI:
 
         elif not self._validate_rpc_resources():
             self.authenticate()
-
-
